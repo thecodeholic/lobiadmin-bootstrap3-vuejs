@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <lobi-header></lobi-header>
-    <lobi-navigation></lobi-navigation>
+    <navbar></navbar>
+    <sidebar></sidebar>
     <div id="main">
       <div id="ribbon" class="hidden-print">
         <a href="#dashboard" class="btn-ribbon" data-container="#main" data-toggle="tooltip"
@@ -21,14 +21,14 @@
 </template>
 
 <script>
-import Header from './shared/components/header/Header'
-import Navigation from './shared/components/navigation/Navigation'
+import Navbar from './shared/components/navbar/Navbar'
+import Sidebar from './shared/components/sidebar/Sidebar'
 
 export default {
   name: 'App',
   components: {
-    'lobi-header': Header,
-    'lobi-navigation': Navigation
+    'navbar': Navbar,
+    'sidebar': Sidebar
   }
 }
 </script>
