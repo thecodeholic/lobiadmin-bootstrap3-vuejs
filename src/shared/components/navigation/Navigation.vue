@@ -25,12 +25,12 @@
     </div>
     <nav>
       <ul>
-        <li>
-          <a href="#dashboard">
+        <router-link to="dashboard" tag="li" active-class="active">
+          <a>
             <i class="fa fa-home menu-item-icon"></i>
             <span class="inner-text">Dashboard</span>
           </a>
-        </li>
+        </router-link>
         <li>
           <a href="#">
             <i class="fa fa-share-alt menu-item-icon"></i>
@@ -419,13 +419,13 @@
             <span class="inner-text">Mail templates</span>
           </a>
         </li>
-        <li>
-          <a href="#calendar">
+        <router-link to="calendar" tag="li" active-class="active">
+          <a>
             <i class="fa fa-calendar menu-item-icon"></i>
             <span class="inner-text">Calendar</span>
             <span class="badge-wrapper"><span class="badge badge-xs badge-info">12</span></span>
           </a>
-        </li>
+        </router-link>
         <li>
           <a href="#lobimail">
             <i class="fa fa-envelope menu-item-icon"></i>
@@ -496,9 +496,9 @@
 </template>
 
 <script>
-export default {
-  name: "Navigation"
-}
+  export default {
+    name: "Navigation"
+  }
 </script>
 
 <style lang="scss" scoped>
