@@ -1,6 +1,6 @@
 <template>
   <div>
-    Dashboard
+    <h1>Dashboard</h1>
   </div>
 </template>
 
@@ -11,7 +11,5 @@ export default {
 </script>
 
 <style scoped>
-  div{
-    background: red;
-  }
+
 </style>
