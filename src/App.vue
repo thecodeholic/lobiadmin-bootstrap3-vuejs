@@ -49,10 +49,7 @@ export default {
 </script>
 
 <style lang="scss">
-  $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-  @import "~bootstrap-sass/assets/stylesheets/bootstrap";
-  $fa-font-path: "~font-awesome/fonts";
-  @import "~font-awesome/scss/font-awesome";
+
   @import "./assets/scss/index";
 
 </style>

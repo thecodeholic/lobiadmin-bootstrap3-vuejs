@@ -9,11 +9,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-// import 'vue-awesome/icons'
+import FullCalendar from 'vue-full-calendar'
 //
 // import Icon from 'vue-awesome/components/Icon'
 
 Vue.config.productionTip = false
+Vue.use(FullCalendar)
 
 // Vue.component('icon', Icon)
 
