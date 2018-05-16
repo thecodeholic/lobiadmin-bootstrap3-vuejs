@@ -1,5 +1,10 @@
-@import './globals/index.scss';
-//Author     : @arboshiki
+
+@import "components/mixins.scss";
+@import "components/ui/fonts.scss";
+@import "components/ui/animate.scss";
+@import "components/ui/bootstrap-variables.scss";
+@import "components/ui/variables.scss";
+@import "components/ui/theme-variables.scss";
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
@@ -13,12 +18,6 @@
 //------------------------------------------------------------------------------
 //--------------------------------MY STYLES-------------------------------------
 //------------------------------------------------------------------------------
-
-@import "components/mixins.scss";
-@import "components/ui/fonts.scss";
-@import "components/ui/animate.scss";
-@import "components/ui/variables.scss";
-@import "components/ui/theme-variables.scss";
 
 @import "components/ui/scaffolding.scss";
 @import "components/ui/responsive-utilities.scss";
