@@ -169,10 +169,10 @@ export default {
               children: [
                 {
                   name: 'Third level menu',
-                  chidlren: [
+                  children: [
                     {
                       name: 'Fourth level',
-                      chidlren: [
+                      children: [
                         {
                           name: 'Fifth level',
                           children: [

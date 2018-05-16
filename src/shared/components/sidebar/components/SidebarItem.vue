@@ -7,9 +7,13 @@
   <li v-else :class="{opened: opened}" >
     <a href="#" @click="toggleItem()">
       <sidebar-item-content :icon="icon" :name="name" :badge="badge" :badge-classes="badgeClasses"></sidebar-item-content>
-      <i v-if="children && children.length" class="fa fa-chevron-circle-right menu-item-toggle-icon"></i>
+      <template v-if="children && children.length">
+        <i v-if="level === 1" class="fa fa-chevron-circle-right menu-item-toggle-icon"></i>
+        <i v-else-if="!opened" class="fa fa-plus-square-o menu-item-toggle-icon"></i>
+        <i v-else class="menu-item-toggle-icon fa fa-minus-square-o"></i>
+      </template>
     </a>
-    <ul :style="{height: opened ? 'auto': '0px'}" v-if="children && children.length">
+    <ul :style="subItemsStyle" v-if="children && children.length">
       <sidebar-item v-for="(childItem, i) in children"
                     :to="childItem.url"
                     :name="childItem.name"
@@ -17,6 +21,7 @@
                     :badge="childItem.badge"
                     :badge-classes="childItem.badgeClasses"
                     :children="childItem.children"
+                    :level="childItem.level + 1"
                     :key="i"
       ></sidebar-item>
     </ul>
@@ -30,7 +35,14 @@ export default {
   name: "SidebarItem",
   props: {
     to: [String, Object, Boolean],
-    name: String,
+    name: {
+      type: String,
+      required: true
+    },
+    level: {
+      type: Number,
+      default: 1
+    },
     icon: String,
     badge: Number,
     badgeClasses: [String, Array],
@@ -44,8 +56,17 @@ export default {
       opened: false
     }
   },
+  computed: {
+    subItemsStyle () {
+      return {
+        height: this.opened ? 'auto' : '0px',
+        display: this.opened ? 'block' : 'none'
+      }
+    }
+  },
   methods: {
     toggleItem () {
+      console.log("1111")
       if (this.children && this.children.length) {
         this.opened = !this.opened
       }
