@@ -1,46 +1,55 @@
-<template v-if="to">
-  <router-link :to="to" tag="li" active-class="active">
+<template>
+  <router-link v-if="to" :to="to" tag="li" active-class="active" :exact="true">
     <a>
-      <i v-if="icon" class="fa menu-item-icon" :class="'fa-'+icon"></i>
-      <span class="inner-text">{{name}}</span>
-      <span v-if="badge" class="badge-wrapper">
-        <span class="badge" :class="badgeClasses">{{badge}}</span>
-      </span>
+      <sidebar-item-content :icon="icon" :name="name" :badge="badge" :badge-classes="badgeClasses"></sidebar-item-content>
     </a>
   </router-link>
-</template>
-
-<template v-if="!to">
-  <li>
-    <a href="#">
-      <i v-if="icon" class="fa menu-item-icon" :class="'fa-'+icon"></i>
-      <span class="inner-text">{{name}}</span>
-      <span v-if="badge" class="badge-wrapper">
-        <span class="badge" :class="badgeClasses">{{badge}}</span>
-      </span>
+  <li v-else :class="{opened: opened}" >
+    <a href="#" @click="toggleItem()">
+      <sidebar-item-content :icon="icon" :name="name" :badge="badge" :badge-classes="badgeClasses"></sidebar-item-content>
+      <i v-if="children && children.length" class="fa fa-chevron-circle-right menu-item-toggle-icon"></i>
     </a>
-    <ul v-if="children && children.length">
-      <sidebar-item v-for="childItem in children"
+    <ul :style="{height: opened ? 'auto': '0px'}" v-if="children && children.length">
+      <sidebar-item v-for="(childItem, i) in children"
                     :to="childItem.url"
                     :name="childItem.name"
                     :icon="childItem.icon"
                     :badge="childItem.badge"
                     :badge-classes="childItem.badgeClasses"
+                    :children="childItem.children"
+                    :key="i"
       ></sidebar-item>
     </ul>
   </li>
 </template>
 
 <script>
+import SidebarItemContent from './SidebarItemContent'
+
 export default {
   name: "SidebarItem",
   props: {
-    to: [String, Object],
+    to: [String, Object, Boolean],
     name: String,
     icon: String,
     badge: Number,
     badgeClasses: [String, Array],
     children: Array
+  },
+  components: {
+    SidebarItemContent
+  },
+  data: () => {
+    return {
+      opened: false
+    }
+  },
+  methods: {
+    toggleItem () {
+      if (this.children && this.children.length) {
+        this.opened = !this.opened
+      }
+    }
   }
 }
 </script>

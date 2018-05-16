@@ -560,6 +560,7 @@ body{
             padding-left: 0;
             position: relative;
             margin-bottom: 0;
+            @include transition(0.3s height);
             >li{
                 position: relative;
                 >a{
@@ -579,6 +580,10 @@ body{
                         right: 15px;
                         margin-top: 2px;
                         font-size: $nav-menu-item-icon-font-size;
+                        @include transition(0.3s transform);
+                    }
+                    >div{
+                        display: inline-block;
                     }
                     .badge-wrapper{
                         position: absolute;
@@ -633,6 +638,9 @@ body{
                     border-right: $nav-menu-item-opened-border-right-width solid $nav-menu-item-opened-border-right-color;
                     >a{
                         border-bottom: 1px solid $nav-menu-item-border-color;
+                        .menu-item-toggle-icon{
+                            @include rotate(90deg);
+                        }
                     }
                     &+li{
                         >a{
@@ -660,6 +668,9 @@ body{
                     }
                 }
                 >ul{
+                    height: 0;
+                    display: block;
+                    overflow: hidden;
                     >li{
                         &:before{
                             content: "";

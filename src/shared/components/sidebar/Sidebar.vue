@@ -25,13 +25,14 @@
     </div>
     <nav>
       <ul>
-        <sidebar-item v-for="menuItem in menuData"
-                      :to="menuItem.url"
+        <sidebar-item v-for="(menuItem, index) in menuData"
+                      :to="menuItem.url || false"
                       :name="menuItem.name"
                       :icon="menuItem.icon"
                       :badge="menuItem.badge"
                       :badge-classes="menuItem.badgeClasses"
                       :children="menuItem.children"
+                      :key="index"
         ></sidebar-item>
       </ul>
     </nav>
@@ -124,7 +125,6 @@ export default {
             },
             {
               name: 'Icons',
-              url: '/icons',
               children: [
                 {
                   name: 'Glyphicon',
@@ -191,7 +191,7 @@ export default {
         {
           name: 'Forms',
           icon: 'pencil-square-o',
-          chidlren: [
+          children: [
             {
               name: 'Basic Elements',
               url: '/form-basic-elements'

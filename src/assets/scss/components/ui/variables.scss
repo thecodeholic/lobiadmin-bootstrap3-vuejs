@@ -154,7 +154,7 @@ $nav-menu-item-transition-duration              : $transition-duration;
 //this is left offset of vertical line 
 $nav-menu-submenu-vertical-line-style           : solid;
 $nav-menu-submenu-vertical-line-left-offset     : 20px;
-$nav-menu-submenu-vertical-line-color           : fadeout($menu-color, 50%);
+$nav-menu-submenu-vertical-line-color           : transparentize($menu-color, 0.5);
 $nav-menu-submenu-item-bg                       : lighten($nav-menu-item-bg, 5%);
 $nav-menu-submenu-item-hover-bg                 : darken($nav-menu-submenu-item-bg, 4%);
 $nav-menu-submenu-item-opened-bg                : $nav-menu-submenu-item-hover-bg;
