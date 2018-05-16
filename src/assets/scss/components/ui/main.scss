@@ -1,7 +1,8 @@
 //Author          : @arboshiki
 
 html,
-body{
+body,
+#app{
     margin: 0;
     padding: 0;
     min-height: 100%;
@@ -11,7 +12,7 @@ body{
 html{
     position: relative;
 }
-body{
+#app{
     &.menu-collapsed{
         .show-hide-menu{
             visibility: hidden;
@@ -912,7 +913,7 @@ body{
             }
         }
     }
-    body{
+    #app{
         .menu{
             left: -$menu-width;
         }
@@ -953,7 +954,7 @@ body{
     }
 }
 @media screen and (min-width: $screen-md-min){
-    body{
+    #app{
         &.menu-hidden{
             #main{
                 margin-left: $menu-partial-hidden-width;
@@ -1014,11 +1015,11 @@ body{
         right: -70px;
         left: auto;
     }
-    body.header-fixed{
+    #app.header-fixed{
         padding-top: 2 * $navbar-height;
     }
 
-    body.ribbon-fixed{
+    #app.ribbon-fixed{
         padding-top: 2 * $navbar-height + $ribbon-height;
         #ribbon{
             top: 2 * $navbar-height;

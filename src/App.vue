@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{'menu-hidden': !menuOpened}">
     <navbar></navbar>
     <sidebar></sidebar>
     <div id="main">
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { eventBus } from './shared/services/event-bus'
 import Navbar from './shared/components/navbar/Navbar'
 import Sidebar from './shared/components/sidebar/Sidebar'
 
@@ -29,6 +30,16 @@ export default {
   components: {
     'navbar': Navbar,
     'sidebar': Sidebar
+  },
+  data: () => {
+    return {
+      menuOpened: true
+    }
+  },
+  created () {
+    eventBus.$on('sidebarToggled', (opened) => {
+      this.menuOpened = opened
+    })
   }
 }
 </script>
