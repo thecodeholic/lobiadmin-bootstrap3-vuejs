@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="{'menu-hidden': !menuOpened}">
+  <div id="app" :class="{'menu-hidden': !menuOpened, 'menu-collapsed': menuCollapsed}">
     <navbar></navbar>
     <sidebar></sidebar>
     <div id="main">
@@ -33,12 +33,16 @@ export default {
   },
   data: () => {
     return {
-      menuOpened: true
+      menuOpened: true,
+      menuCollapsed: false
     }
   },
   created () {
-    eventBus.$on('sidebarToggled', (opened) => {
+    eventBus.$on('sidebarShowHideToggled', (opened) => {
       this.menuOpened = opened
+    })
+    eventBus.$on('sidebarCollapseToggled', (collapsed) => {
+      this.menuCollapsed = collapsed
     })
   }
 }

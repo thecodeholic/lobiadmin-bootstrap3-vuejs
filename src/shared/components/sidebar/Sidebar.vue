@@ -38,12 +38,15 @@
     </nav>
     <div class="menu-collapse-line">
       <!--Menu collapse/expand icon is put and control from LobiAdmin.js file-->
-      <div class="menu-toggle-btn" data-action="collapse-expand-sidebar"></div>
+      <div class="menu-toggle-btn" @click="sidebarCollapseToggle" data-action="collapse-expand-sidebar">
+        <i class="fa fa-chevron-circle-left"></i>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { eventBus } from '../../services/event-bus'
 import SidebarItem from './components/SidebarItem'
 
 export default {
@@ -53,6 +56,7 @@ export default {
   },
   data: () => {
     return {
+      sidebarCollapsed: false,
       menuData: [
         {
           name: 'Dashboard',
@@ -299,7 +303,13 @@ export default {
       ]
     }
   },
-  methods: {}
+  methods: {
+    sidebarCollapseToggle () {
+      console.log("111")
+      this.sidebarCollapsed = !this.sidebarCollapsed
+      eventBus.$emit('sidebarCollapseToggled', this.sidebarCollapsed)
+    }
+  }
 }
 </script>
 

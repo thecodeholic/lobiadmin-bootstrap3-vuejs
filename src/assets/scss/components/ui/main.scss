@@ -102,6 +102,13 @@ html{
                     }
                 }
             }
+            .menu-collapse-line{
+                .menu-toggle-btn{
+                    >*{
+                        @include rotate(180deg);
+                    }
+                }
+            }
         }
     }
     &.menu-hidden,
@@ -710,6 +717,7 @@ html{
             font-size: $menu-collapse-line-btn-font-size;
             line-height: $menu-collapse-line-height - $menu-collapse-line-border-width * 2;
             color: $menu-collapse-line-btn-color;
+            @include transition(0.3s transform);
             &:hover{
                 color: $menu-collapse-line-btn-hover-color;
                 text-shadow: $nav-menu-item-hover-text-shadow;

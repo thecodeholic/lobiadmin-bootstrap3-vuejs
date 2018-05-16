@@ -21,7 +21,7 @@ export default {
   methods: {
     toggleSidebar () {
       this.sidebarOpened = !this.sidebarOpened
-      eventBus.$emit('sidebarToggled', this.sidebarOpened)
+      eventBus.$emit('sidebarShowHideToggled', this.sidebarOpened)
     }
   }
 }
