@@ -23,16 +23,21 @@
         <full-calendar :events="events" :config="config"></full-calendar>
       </div>
     </div>
+    <event-edit-dialog :opened="showNewEventDialog"></event-edit-dialog>
   </div>
 </template>
 
 <script>
+import EventEditDialog from './components/EventEditDialog'
 
 export default {
   name: "Calendar",
-  components: {},
-  data() {
+  components: {
+    EventEditDialog
+  },
+  data () {
     return {
+      showNewEventDialog: false,
       events: [
         {
           title: 'All Day Event',
@@ -104,8 +109,7 @@ export default {
       ],
       config: {
         dayClick: (date, jsEvent, view) => {
-          console.log("on dayClick")
-          //@todo
+          this.showNewEventDialog = true
         },
         header: {
           left: 'prev,next today',

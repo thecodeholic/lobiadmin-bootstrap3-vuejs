@@ -10,11 +10,17 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import FullCalendar from 'vue-full-calendar'
-//
-// import Icon from 'vue-awesome/components/Icon'
+import * as uiv from 'uiv'
+import * as lobiCore from './core'
+
+window.$ = window.jQuery = require('jquery')
+import 'bootstrap-daterangepicker'
+import 'bootstrap-daterangepicker/daterangepicker.css'
 
 Vue.config.productionTip = false
 Vue.use(FullCalendar)
+Vue.use(uiv)
+Vue.component('lobi-date-range-picker', lobiCore.DateRangePicker)
 
 // Vue.component('icon', Icon)
 
