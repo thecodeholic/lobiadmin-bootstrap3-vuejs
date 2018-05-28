@@ -7,7 +7,8 @@ module.exports = {
   },
   globals: {
     window: true,
-    $: true
+    $: true,
+    moment: true
   },
   env: {
     browser: true,
