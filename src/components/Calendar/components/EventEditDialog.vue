@@ -1,5 +1,5 @@
 <template>
-  <modal v-model="opened" title="Add event" ref="modal">
+  <modal v-model="modalOpened" @hide="callback" title="Add event" ref="modal">
     <form action>
       <div class="form-group">
         <label class="control-label">Event style</label>
@@ -35,11 +35,17 @@
       </div>
 
       <div class="form-group">
-        <lobi-date-range-picker name="date_period" classes="form-control" :config="datePickerConfig"></lobi-date-range-picker>
+        <lobi-date-range-picker
+                :value="eventDetails.start"
+                @valueChanged="onValueChange"
+                name="date_period"
+                classes="form-control"
+                :config="datePickerConfig"
+        ></lobi-date-range-picker>
       </div>
       <div class="form-group">
-        <label class="checkbox lobicheck">
-          <input type="checkbox" name="allday" v-model="eventDetails.allDay">
+        <label class="checkbox-inline lobicheck">
+          <input type="checkbox" name="allday" v-model="allDay">
           <i></i> All day
         </label>
       </div>
@@ -64,26 +70,41 @@ export default {
     opened: Boolean,
     eventDetails: {
       type: Object,
-      default: () => {
+      required: true,
+      default () {
         return {
-          allDay: true
+          allDay: true,
+          start: new Date(),
+          end: new Date()
         }
       }
     }
   },
-  watch: {
-    eventDetails: {
-      handler () {
-        this.datePickerConfig.singleDatePicker = this.eventDetails.allDay;
-      },
-      deep: true
+  data () {
+    const allDay = this.eventDetails.allDay
+    return {
+      allDay: allDay,
+      modalOpened: this.opened,
+      datePickerConfig: {
+        singleDatePicker: allDay
+      }
     }
   },
-  data () {
-    return {
-      datePickerConfig: {
-        singleDatePicker: this.eventDetails.allDay
-      }
+  watch: {
+    opened () {
+      this.modalOpened = this.opened
+    },
+    allDay () {
+      this.datePickerConfig.singleDatePicker = this.allDay
+    }
+  },
+  methods: {
+    callback () {
+      this.$emit('modalHidden', true)
+    },
+    onValueChange (start, end) {
+      this.eventDetails.start = start
+      this.eventDetails.end = end
     }
   }
 }

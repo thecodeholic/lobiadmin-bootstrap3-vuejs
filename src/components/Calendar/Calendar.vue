@@ -23,7 +23,7 @@
         <full-calendar :events="events" :config="config"></full-calendar>
       </div>
     </div>
-    <event-edit-dialog :opened="showNewEventDialog"></event-edit-dialog>
+    <event-edit-dialog @modalHidden="modalHidden" :event-details="myEventDetails" :opened="showEventEditorDialog"></event-edit-dialog>
   </div>
 </template>
 
@@ -37,7 +37,8 @@ export default {
   },
   data () {
     return {
-      showNewEventDialog: false,
+      showEventEditorDialog: false,
+      eventDetails: {allDay: true},
       events: [
         {
           title: 'All Day Event',
@@ -109,7 +110,8 @@ export default {
       ],
       config: {
         dayClick: (date, jsEvent, view) => {
-          this.showNewEventDialog = true
+          this.eventDetails.start = date
+          this.showEventEditorDialog = true
         },
         header: {
           left: 'prev,next today',
@@ -125,11 +127,26 @@ export default {
         defaultView: 'month',
         eventRender: function (event, element, view) {
           if (event.description) {
-            element.append('<span class="fc-description">' + event.description + '</span>');
+            element.append('<span class="fc-description">' + event.description + '</span>')
           }
-        },
+        }
       }
     }
+  },
+  computed: {
+    myEventDetails () {
+      return Object.assign({}, this.eventDetails)
+    }
+  },
+  methods: {
+    modalHidden () {
+      this.showEventEditorDialog = false
+    }
+  },
+  mounted () {
+    this.$watch('this.eventDetails', eventDetails => {
+      console.log("CHAAAAAAAAAAAAAAAnge")
+    }, {immediate: true})
   }
 }
 </script>
